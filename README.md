@@ -1,2 +1,3 @@
 # Editor
-Edición de Atria-ERP
+Edición del sistema Atria
+En desenvolupament.
