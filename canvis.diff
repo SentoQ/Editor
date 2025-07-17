@@ -1,0 +1,122 @@
+diff --git a/Edit_CSS.html b/Edit_CSS.html
+index e69de29..abcd123 100644
+--- a/Edit_CSS.html
++++ b/Edit_CSS.html
+@@
+-# Generador CSS Visual
+-
+-Àrea Label Input
+-…   (contingut desordenat suprimit)
+-Copiar CSS
+-Descarregar HTML
++<!DOCTYPE html>
++<html lang="ca">
++  <head>
++    <meta charset="utf-8" />
++    <meta name="viewport" content="width=device-width,initial-scale=1" />
++    <title>Generador CSS Visual</title>
++    <!-- estils externs -->
++    <link rel="stylesheet" href="Edit_CSS.css" />
++  </head>
++  <body>
++    <h1>Generador CSS Visual</h1>
++
++    <div class="editor">
++      <!-- CONTROLS ---------------------------------------------------- -->
++      <section class="controls">
++        <div class="tabs">
++          <button data-t="t-area" class="active">Àrea</button>
++          <button data-t="t-lbl">Label</button>
++          <button data-t="t-inp">Input</button>
++        </div>
++
++        <!-- … (mateix HTML de pestanyes que ja tens, sense canvis) … -->
++
++      </section>
++
++      <!-- PREVIEW ----------------------------------------------------- -->
++      <section class="preview">
++        <div id="canvas">
++          <label id="lbl" for="inp">Nom d'usuari</label>
++          <input id="inp" type="text" placeholder="Escriu" />
++        </div>
++      </section>
++
++      <!-- OUTPUT ------------------------------------------------------ -->
++      <aside class="code">
++        <button id="copy">Copiar CSS</button>
++        <pre><code id="css"></code></pre>
++        <button id="dl">Descarregar HTML</button>
++      </aside>
++    </div>
++
++    <!-- lògica -->
++    <script src="Edit_CSS.js" defer></script>
++  </body>
++</html>
+diff --git a/Edit_CSS.css b/Edit_CSS.css
+new file mode 100644
+index 0000000..def0123
+--- /dev/null
++++ b/Edit_CSS.css
+@@
++:root{
++  --gap:2rem;
++  --pane:#fff;
++  --shadow:0 2px 12px #0001;
++  --border:1px solid #ddd;
++  font-family:sans-serif;
++}
++body{margin:2rem;background:#f6f6f6}
++h1{font-size:1.4rem;margin-bottom:1.5rem}
++.editor{display:flex;flex-wrap:wrap;gap:var(--gap)}
++.controls,.preview,.code{background:var(--pane);padding:1.25rem;border-radius:10px;box-shadow:var(--shadow)}
++.controls{flex:1 1 260px;max-width:320px}
++.preview{flex:2 1 460px;min-width:280px}
++.code{flex:1 1 280px;max-width:420px;display:flex;flex-direction:column;gap:1rem}
++.tabs{display:flex;gap:.5rem;margin-bottom:1rem}
++.tabs button{padding:.4rem .8rem;border:var(--border);background:#f2f2f2;border-radius:6px 6px 0 0;cursor:pointer}
++.tabs .active{background:#fff;color:#2063aa;font-weight:600}
++.tab{display:none}.tab.active{display:block}
++#canvas{position:relative;width:100%;max-width:800px;height:60vh;max-height:600px;background:#f9fafc;border:1.5px dashed #b0b0b0;border-radius:8px;overflow:hidden}
++.ctrl{margin-bottom:.75rem}
++.group{border:var(--border);padding:.75rem;border-radius:6px;margin-bottom:.75rem}
++.code pre{background:#222;color:#cfe8b0;padding:1rem;border-radius:7px;font-family:monospace;font-size:.9rem;white-space:pre;min-height:140px}
++@media(max-width:960px){.editor{flex-direction:column}}
++
+diff --git a/Edit_CSS.js b/Edit_CSS.js
+index 0123abc..4567def 100644
+--- a/Edit_CSS.js
++++ b/Edit_CSS.js
+@@
+-// Helpers per a selectors ràpids
+-const $ = e => document.getElementById(e),
+-      qs = sel => document.querySelector(sel),
+-      qsa = sel => document.querySelectorAll(sel);
++// Helpers per a selectors ràpids
++const $  = id  => document.getElementById(id),
++      qs = sel => document.querySelector(sel),
++      qsa= sel => document.querySelectorAll(sel);
++
++// Debounce per evitar refrescos excessius
++const debounce = (fn,ms=150)=>{let t;return (...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms);};};
+@@
+-// Vincula tots els inputs a la funció refresh
+-qsa('input,select').forEach(el => el.addEventListener('input', refresh));
++// Estat persistent
++function saveState(){
++  const d={}; qsa('input,select').forEach(el=>d[el.id]=el.value);
++  localStorage.setItem('cssGenState',JSON.stringify(d));
++}
++function loadState(){
++  const d=JSON.parse(localStorage.getItem('cssGenState')||'{}');
++  Object.entries(d).forEach(([k,v])=>{const el=$(k); if(el) el.value=v;});
++}
++
++// Vincula inputs amb debounce i guardat
++const debouncedRefresh = debounce(()=>{refresh();saveState();},150);
++qsa('input,select').forEach(el => el.addEventListener('input', debouncedRefresh));
++
++// Carrega estat i refresca
++loadState();
++refresh();
