@@ -1,0 +1,142 @@
+/* =============================================================
+   VARIABLES GLOBALS I RESET
+   ============================================================= */
+:root {
+  /* Colors principals */
+  --main-bg: #e9ecef;
+  --sidebar-bg: #f0f0ff;
+  --panel-bg: #ffffff;
+  --form-border: #101010;
+  --form-shadow: 0 8px 40px 0 rgba(30,30,60,.16);
+  --border-radius: 20px;
+
+  /* Inputs/config */
+  --input-border: #bbb;
+  --input-radius: 5px;
+  --input-font-size: 0.9em;
+  --active: #1976d2;
+
+  /* Cabecera */
+  --header-font: Arial;
+  --header-size: 18px;
+  --header-weight: normal;
+  --header-style: normal;
+  --header-color: #ffffff;
+  --offset-left: 0px;
+  --offset-right: 0px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--main-bg);
+  font-family: system-ui, Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =============================================================
+   BLOC A: CONFIGURADOR (Sidebars, Paneles, Inputs, Botons)
+   ============================================================= */
+
+/* -- Estructura bàsica -- */
+.editor-container { display: flex; flex: 1; height: 100vh; }
+.editor-sidebar { width: 300px; background: var(--sidebar-bg); color: #000; display: flex; flex-direction: column; box-sizing: border-box; padding: 32px 20px 0; }
+.editor-sidebar.left  { border-right: 2px solid #dee2e6; }
+.editor-sidebar.right { border-left: 2px solid #dee2e6; }
+.editor-title   { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 1px; }
+
+/* -- Llista d’elements -- */
+.config-list   { list-style: none; margin: 0; padding: 0; }
+.config-item   { font-size: 0.9em; font-weight: 500; margin-bottom: 0.2em; padding: 4px 8px; border-radius: 5px; user-select: none; cursor: default; }
+.config-item.selected { background: #e0e0ff; }
+.config-trigger {
+  background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit;
+  cursor: pointer; border-radius: 4px; transition: background .15s; display: inline-block;
+}
+.config-trigger:hover,
+.config-trigger[aria-expanded="true"] { background: #d0d0ff; }
+
+/* -- Panell de configuració -- */
+.config-panel {
+  display: flex; flex-direction: column; gap: 1px; align-items: flex-start;
+  background: var(--panel-bg); border-radius: 10px;
+  margin: 8px 0; padding: 16px 18px; max-width: 295px; min-width: 240px;
+  box-shadow: 0 2px 18px rgba(30,30,60,.08); animation: fadein .2s;
+}
+@keyframes fadein { from { opacity: 0 } to { opacity: 1 } }
+.config-row { display: flex; align-items: center; width: 100%; margin-bottom: 10px; gap: 3px; }
+
+/* -- Inputs generals -- */
+.config-input           { font-size: var(--input-font-size); border-radius: var(--input-radius); border: 1px solid var(--input-border); }
+.config-input.num       { width: 50px; min-width: 50px; padding: 2px 2px; text-align: right; margin-right: 6px; }
+.config-input.text      { width: 130px; padding: 3px 2px; margin-right: 8px; }
+.config-input.font      { max-width: 120px; flex: 1 1 0; padding: 4px 6px 4px 6px; }
+.config-input.color     { width: 36px; padding: 0; border: none; background: none; vertical-align: middle; margin-left: 6px; flex: 0 0 auto; }
+.config-input.checkbox  { accent-color: var(--active); }
+
+.config-btn {
+  width: 30px; height: 30px; margin-left: 5px; display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--input-border); border-radius: 6px; background: #f5f6fa; font-size: 1.13em; font-weight: 700;
+  color: #222; cursor: pointer; user-select: none; transition: border .17s, background .17s; outline: none;
+}
+.config-btn.active { border-color: var(--active); background: #e6f0fd; color: #184aad; }
+
+/* -- Altres utilitats -- */
+.config-separator { border: none; border-top: 1.2px solid #dde3f5; margin: 13px 0 8px; width: 100%; }
+.is-hidden { display: none; }
+
+/* =============================================================
+   BLOC B: ELEMENTS CONFIGURABLES (Formulari, Cabecera, etc.)
+   ============================================================= */
+
+/* -- Zona central on es reflecteix el resultat -- */
+.visual-center { flex: 1; display: flex; justify-content: center; align-items: center; min-width: 1024px; }
+.visual-form {
+  width: 1024px; height: 800px; border: 2px solid var(--form-border); border-radius: var(--border-radius);
+  box-shadow: var(--form-shadow); display: flex; flex-direction: column; overflow: hidden; background: #fff;
+  transition: width .2s, height .2s, background .2s, box-shadow .2s;
+}
+
+/* -- Cabecera general del formulari -- */
+.visual-header {
+  height: 60px; background: linear-gradient(90deg,#1976d2 60%,#2196f3 100%);
+  display: flex; align-items: center; justify-content: space-between;
+  color: #fff; padding: 0 28px; font-size: 1.1rem; font-weight: 500;
+  transition: height .2s, background .2s;
+}
+
+/* -- Textos de capçalera -- */
+.header-text         { font-family: var(--header-font); font-size: var(--header-size); font-weight: var(--header-weight); font-style: var(--header-style); color: var(--header-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; }
+.header-text.left    { margin-left: var(--offset-left); }
+.header-text.center  { justify-content: center; text-align: center; }
+.header-text.right   { margin-right: var(--offset-right); }
+.header-text.right i { font-size: 1.2em; margin-left: .4rem; }
+
+/* -- Ultra-específics (si cal) -- */
+#header-left  { margin-left: var(--offset-left); }
+#header-right { margin-right: var(--offset-right); }
+
+/* =============================================================
+   BLOC C: BARRA DE MENÚ (previsualització dels estats)
+   ============================================================= */
+.form-menu{
+  display:flex;
+  align-items:center;
+  gap:20px;                    /* separació entre opcions */
+  padding:0 24px;              /* mateix marge lateral que la capçalera */
+  border-bottom:1px solid transparent; /* el JS li aplica el color real */
+}
+.form-menu .menu-item{
+  cursor:pointer;
+  user-select:none;
+  padding:2px 8px;
+}
+.form-menu .menu-item.disabled{
+  cursor:default;
+  pointer-events:none;
+  opacity:.6;
+}
+
+/* Afegir més classes d’herència o modificadors si es necessiten */
+
