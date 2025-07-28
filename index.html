@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menú · Edit_CSS</title>
+  <style>
+    :root{
+      --menu-h:36px;
+      --menu-bg:#f8f9fa;
+      --menu-border:#dee2e6;
+      --accent:#1976d2;
+    }
+    *{
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
+	font-family:system-ui,Arial
+	}
+    body{
+	height:100vh;
+	display:flex;
+	flex-direction:column;
+	background:var(--menu-bg)
+	}
+
+    /* ---------- menú principal ---------- */
+    .top-menu{
+	height:var(--menu-h);
+	background:var(--menu-bg);
+	border-bottom:2px solid var(--menu-border);
+	display:flex;
+	align-items:center;
+	padding:0 1rem;
+	gap:1.4rem;
+	position:relative;
+	z-index:10
+	}
+    .menu-item{
+	position:relative;
+	cursor:pointer;
+	font-weight:500;
+	user-select:none;
+	}
+    .menu-item:hover{color:var(--accent)}
+
+    /* ---------- submenú flotante ---------- */
+    .submenu{
+	display:none;
+	position:absolute;
+	top:var(--menu-h -3);
+	left:0;
+	background:#fff;
+	border:1px solid var(--menu-border);
+	border-radius:6px;
+	box-shadow:0 6px 18px rgba(0,0,0,.08);
+	min-width:160px;
+	padding:0 0
+	}
+    .submenu a{
+	display:block;
+	padding:.0rem 1rem;
+	text-decoration:none;
+	color:#333;
+	white-space:nowrap
+	}
+    .submenu a:hover{
+	background:#e7f0ff
+	}
+    .menu-item:hover .submenu{
+	display:block
+	}
+
+    /* ---------- área de mòduls ---------- */
+    main{
+	flex:1;
+	}
+    iframe{
+	width:100%;
+	height:100%;
+	border:none;
+	background:#fff
+	}
+  </style>
+</head>
+<body>
+  <!-- ░░ MENÚ SUPERIOR ░░ -->
+  <nav class="top-menu">
+    <div class="menu-item">Estilo
+      <div class="submenu">
+        <a href="#" data-fn="newStyle">Nuevo</a>
+        <a href="#" data-fn="openStyle">Abrir</a>
+        <a href="#" data-fn="saveStyle">Guardar</a>
+        <a href="#" data-fn="saveStyleAs">Guardar como…</a>
+      </div>
+    </div>
+    <div class="menu-item">Documentos
+      <div class="submenu">
+        <a href="#" data-fn="newDoc">Nuevo documento</a>
+        <a href="#" data-fn="openDoc">Abrir documento</a>
+		<a href="#" data-fn="saveDoc">Guardar documento</a>
+		<a href="#" data-fn="saveDocAs">Guardar documento como…</a>
+      </div>
+    </div>
+    <div class="menu-item">Entidades
+      <div class="submenu">
+        <a href="#" data-fn="entityList">Listar</a>
+        <a href="#" data-fn="entityManage">Gestionar…</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ░░ ÀREA PRINCIPAL ░░ -->
+  <main>
+    <iframe id="module-frame" src="editorCSS.html" title="Mòdul"></iframe>
+  </main>
+
+  <script>
+    // Passar crides del menú al mòdul carregat a l'iframe
+    const frame = document.getElementById('module-frame');
+    function callInEditor(fn){
+      if(frame?.contentWindow && typeof frame.contentWindow[fn]==='function'){
+        frame.contentWindow[fn]();
+      } else {
+        console.warn(`Funció ${fn} no trobada a l'editor`);
+      }
+    }
+    document.querySelectorAll('.submenu a[data-fn]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        callInEditor(a.dataset.fn);
+      });
+    });
+  </script>
+</body>
+</html>
