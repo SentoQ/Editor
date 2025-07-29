@@ -1,0 +1,173 @@
+/* ╔════════════════════════════════════╗ */
+/* ║          CONFIGURADOR              ║ */
+/* ╚════════════════════════════════════╝ */
+
+:root {
+ /* Variables sides i panel */
+   --side-bg: #f5f5ff;
+   --side-border: #101010;
+   --panel-bg: #f0f0ff;
+	
+  /* Inputs/config */
+  --input-border: #bbb;
+  --input-radius: 5px;
+  --input-font-size: 0.9em;
+  --active: #1976d2;	
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, Arial, sans-serif;
+  font-size: 14px;
+  color: #000000;
+  height: 100vh;
+}
+
+.ed-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: #f0f0f0;
+  overflow: hidden;
+}
+
+/* Zona laterals: Elementos y CSS */
+.ed-side {
+  width: 350px;
+  background-color: var(--side-bg);
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid #E0E0E0;
+}
+.ed-side h3 {
+  font-size: 1.2rem;
+  color: #00006F;
+  text-align: center;
+}
+.ed-side li {
+  min-height: 32px;    /* altura mínima */
+  display: block;      /* o flex si tens més d’un element, però sense align-items */
+  padding-top: 4px;    /* opcional: respiració superior */
+}
+
+.ed-side button {
+  font-size: 1rem;
+  color: #000000;
+  padding-left: 6px;
+  background: none;
+  font-weight: normal;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.ed-side button.active {
+  font-weight: bold;
+  color: #003399;
+}
+
+/* Panels de Paràmetres */
+.ed-subside {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 3px 20px;
+  margin: 3px 3px 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background-color: #ffffff;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+  display: none;
+}
+.ed-subside.open {
+  display: flex;
+}
+.ed-row {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* separació entre camps */
+  margin-bottom: 8px;
+}
+	.section-title {
+	  font-weight: bold;
+	  font-size: 0.95em;
+	  margin-top: 10px;
+	  margin-bottom: 4px;
+	  color: #333;
+	}
+/* Zona central: Àrea de treball */
+.ed-panel {
+  flex-grow: 1;
+  background-color: var(--panel-bg);
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  box-shadow: 0 0 30px 0 rgba(00,00,00,.2); animation: fadein .2s;
+}
+
+/* Objectes visuals */
+.ed-input           {
+  font-size: var(--input-font-size);
+  border-radius: var(--input-radius);
+  border: 1px solid var(--input-border); 
+}
+.ed-input.num       {
+  width: 50px; 
+  min-width: 50px;
+  padding: 2px 2px;
+  text-align: right;
+  margin-right: 6px;
+}
+.ed-input.text      { 
+  width: 130px;
+  padding: 3px 2px;
+  margin-right: 8px;
+}
+.ed-input.font      {
+  max-width: 120px;
+  flex: 1 1 0;
+  padding: 4px 6px 4px 6px;
+}
+.ed-input.color     {
+  width: 36px;
+  padding: 0;
+  border: none;
+  background: none;
+  vertical-align: middle;
+  margin-left: 6px;
+  flex: 0 0 auto;
+}
+.ed-input.checkbox  {
+  accent-color: var(--active);
+}
+	.ed-input:focus {
+	  outline: 1px solid var(--active);
+	  outline-offset: 1px;
+	}
+
+.ed-btn         {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--input-border);
+  border-radius: 6px;
+  background: #f5f6fa;
+  font-size: 1.13em;
+  font-weight: 700;
+  color: #222;
+  cursor: pointer;
+  user-select: none;
+  transition: border .17s, background .17s;
+  outline: none;
+}
+	.ed-btn.active    {
+	  border-color: var(--active);
+	  background: #e6f0fd;
+	  color: #184aad;
+	}

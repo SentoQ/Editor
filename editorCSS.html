@@ -3,313 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <title>Editor CSS</title>
-  <!-- 1· Hoja de estilos principal -->
-  <link rel="stylesheet" href="css/editorCSS.css" />
-  <!-- 2· Iconos Bootstrap (UI) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Estils de l'Editor (zona de treball) -->
+  <link rel="stylesheet" href="css/edCSS_w.css" />
+ 
+  <!-- Estils del Maniquí -->
+  <link rel="stylesheet" href="css/edCSS_f.css" />
+
+  <!-- Icones -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body>
-  <div class="editor-container">
-    <!-- ░░ Sidebar Izquierdo – Elementos ░░ -->
-    <aside class="editor-sidebar left">
-      <div class="editor-title">Elementos</div>
-      <ul class="config-list">
-        <!-- ╔════ FORMULARIO ════╗ -->
-        <li class="config-item" id="element-formulario">
-          <button class="config-trigger" id="titulo-formulario" type="button" aria-expanded="false" aria-controls="config-formulario">
-            Formulario
-          </button>
-          <div class="config-panel is-hidden" id="config-formulario" aria-hidden="true">
-            <!-- Dimensiones -->
-            <div class="config-row">
-              <label for="input-width">Ancho (px):</label>
-              <input class="config-input num" type="number" id="input-width" min="300" max="2000" />
-            </div>
-            <div class="config-row">
-              <label for="input-height">Alto (px):</label>
-              <input class="config-input num" type="number" id="input-height" min="200" max="2000" />
-            </div>
-            <div class="config-row">
-              <label for="input-bg">Backcolor:</label>
-              <input class="config-input color" type="color" id="input-bg" />
-            </div>
-            <!-- Sombra -->
-            <div class="config-row" style="font-weight:600">Sombreado</div>
-            <div class="config-row">
-              <label for="shadow-x">X:</label>
-              <input class="config-input num" type="number" id="shadow-x" />
-              <label for="shadow-y">Y:</label>
-              <input class="config-input num" type="number" id="shadow-y" />
-            </div>
-            <div class="config-row">
-              <label for="shadow-blur">Dif.:</label>
-              <input class="config-input num" type="number" id="shadow-blur" />
-              <label for="shadow-spread">Ext.:</label>
-              <input class="config-input num" type="number" id="shadow-spread" />
-            </div>
-            <div class="config-row">
-              <label for="shadow-color">Color:</label>
-              <input class="config-input color" type="color" id="shadow-color" />
-              <label for="shadow-alpha">Opacidad:</label>
-              <input class="config-input num" type="number" id="shadow-alpha" min="0" max="100" />
-            </div>
-            <div class="config-row">
-              <label for="shadow-inset">Inset:</label>
-              <input class="config-input checkbox" type="checkbox" id="shadow-inset" />
-            </div>
-          </div>
-        </li>
-        <!-- ╔════ CABECERA ════╗ -->
-        <li class="config-item" id="element-cabecera">
-          <button class="config-trigger" id="titulo-cabecera" type="button" aria-expanded="false" aria-controls="config-cabecera">
-            Cabecera
-          </button>
-          <div class="config-panel is-hidden" id="config-cabecera" aria-hidden="true">
-            <!-- Generales -->
-            <div class="config-row">
-              <label for="input-cab-height">Altura:</label>
-              <input class="config-input num" type="number" id="input-cab-height" min="30" max="300" />
-            </div>
-            <div class="config-row">
-              <label for="input-cab-bg">Backcolor:</label>
-              <input class="config-input color" type="color" id="input-cab-bg" />
-            </div>
-            <hr class="config-hr" />
-            <!-- Grupo Esquerra -->
-            <div class="config-group-title">Esquerra</div>
-            <div class="config-row">
-              <label for="text-left">Text:</label>
-              <input class="config-input text" type="text" id="text-left" />
-            </div>
-            <div class="config-row">
-              <select class="config-input font" id="font-left">
-                <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Roboto">Roboto</option>
-                <option value="Segoe UI">Segoe UI</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Times New Roman">Times New Roman</option>
-              </select>
-              <input class="config-input color" type="color" id="color-left" title="Color del text" />
-            </div>
-            <div class="config-row">
-              <label for="size-left">Size:</label>
-              <input class="config-input num" type="number" id="size-left" min="10" max="60" />
-              <button class="config-btn" id="bold-left" type="button"><span>B</span></button>
-              <button class="config-btn" id="italic-left" type="button"><span style="font-style:italic">I</span></button>
-            </div>
-            <div class="config-row">
-              <label for="pos-left">Pos.:</label>
-              <input class="config-input num" type="number" id="pos-left" min="0" max="100" />
-            </div>
-            <hr class="config-hr" />
-            <!-- Grupo Centre -->
-            <div class="config-group-title">Centre</div>
-            <div class="config-row">
-              <label for="text-center">Text:</label>
-              <input class="config-input text" type="text" id="text-center" />
-            </div>
-            <div class="config-row">
-              <select class="config-input font" id="font-center">
-                <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Roboto">Roboto</option>
-                <option value="Segoe UI">Segoe UI</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Times New Roman">Times New Roman</option>
-              </select>
-              <input class="config-input color" type="color" id="color-center" title="Color del text" />
-            </div>
-            <div class="config-row">
-              <label for="size-center">Size:</label>
-              <input class="config-input num" type="number" id="size-center" min="10" max="60" />
-              <button class="config-btn" id="bold-center" type="button"><span>B</span></button>
-              <button class="config-btn" id="italic-center" type="button"><span style="font-style:italic">I</span></button>
-            </div>
-            <hr class="config-hr" />
-            <!-- Grupo Dreta -->
-            <div class="config-group-title">Dreta</div>
-            <div class="config-row">
-              <label for="text-right">Text:</label>
-              <input class="config-input text" type="text" id="text-right" />
-            </div>
-            <div class="config-row">
-              <select class="config-input font" id="font-right">
-                <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Roboto">Roboto</option>
-                <option value="Segoe UI">Segoe UI</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Times New Roman">Times New Roman</option>
-              </select>
-              <input class="config-input color" type="color" id="color-right" title="Color del text" />
-            </div>
-            <div class="config-row">
-              <label for="size-right">Size:</label>
-              <input class="config-input num" type="number" id="size-right" min="10" max="60" />
-              <button class="config-btn" id="bold-right" type="button"><span>B</span></button>
-              <button class="config-btn" id="italic-right" type="button"><span style="font-style:italic">I</span></button>
-            </div>
-            <div class="config-row">
-              <label for="pos-right">Pos.:</label>
-              <input class="config-input num" type="number" id="pos-right" min="0" max="100" />
-            </div>
-          </div>
-        </li>
-		<!-- ╔════ MENÚ PRINCIPAL ════╗ -->
-		<li class="config-item" id="element-menu">
-		  <button class="config-trigger" id="titulo-menu" type="button" aria-controls="config-menu">
-			Menú
-		  </button>
 
-		  <div class="config-panel is-hidden" id="config-menu">
-			<!-- ── General ───────────────────────────── -->
-			<div class="config-group-title">General</div>
-			<div class="config-row">
-			  <label for="menu-height">Altura:</label>
-			  <input class="config-input num" type="number" id="menu-height" min="20" max="100" />
-			</div>
-			<div class="config-row">
-			  <label for="menu-bg">Backcolor:</label>
-			  <input class="config-input color" type="color" id="menu-bg" />
-			</div>
-			<div class="config-row">
-			  <select class="config-input font" id="menu-font">
-			    <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Roboto">Roboto</option>
-                <option value="Segoe UI">Segoe UI</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Times New Roman">Times New Roman</option>
-			  </select>
-			  <label for="menu-size">Tamaño:</label>
-			  <input class="config-input num" type="number" id="menu-size" min="10" max="30" />
-			</div>
+  <div class="ed-container">
+    
+    <!-- Zona esquerra: Elements -->
+    <div id="ed-side-left" class="ed-side">
+      <h3>Elementos</h3>
+	  <ul>
+		<li>
+		  <button onclick="subsideOpen(this)"><i class="bi bi-layout-text-window-reverse"></i> Formulari</button>
+		  <div class="ed-subside">
+			
+			<div class="ed-row section-title">General</div>
+            <div class="ed-row">
+              <label for="fr-input-width">Ancho (px):</label>
+              <input class="ed-input num" type="number" id="fr-input-width" min="300" max="2000" />
 
-			<!-- ── Pestanyes del Menú ───────────────────────────── -->
-			<button class="state-trigger active" data-target="panel-activo"      type="button">Activo</button>
-			<button class="state-trigger"        data-target="panel-seleccionado" type="button">Seleccionado</button>
-			<button class="state-trigger"        data-target="panel-inactivo"    type="button">Inactivo</button>
+              <label for="fr-input-height">Alto (px):</label>
+              <input class="ed-input num" type="number" id="fr-input-height" min="200" max="1600" />
+            </div>
 
-			<!-- ▶︎ ACTIVO -->
-			<div class="state-panel" id="panel-activo">
-				<div class="config-row">
-				  <label>Borde:</label><input  type="color"  class="config-input color" id="activo-border" />
-				  <label>Radio:</label><input  type="number" class="config-input num"   id="activo-radius" min="0" max="20" />
-				</div>
-				<div class="config-row">
-				  <label>Color texto:</label><input type="color" class="config-input color" id="activo-fontColor" />
-				  <label>Backcolor:</label><input  type="color" class="config-input color" id="activo-bgColor" />
-				</div>
-				<div class="config-row">
-				  <label>X:</label><input class="config-input num" id="activo-shadow-x" type="number" />
-				  <label>Y:</label><input class="config-input num" id="activo-shadow-y" type="number" />
-				  <label>Dif.:</label><input class="config-input num" id="activo-shadow-blur" type="number" />
-				  <label>Ext.:</label><input class="config-input num" id="activo-shadow-spread" type="number" />
-				</div>
-				<div class="config-row">
-				  <label>Color:</label><input class="config-input color" id="activo-shadow-color" type="color" />
-				  <label>Opacidad:</label><input class="config-input num" id="activo-shadow-alpha" type="number" min="0" max="100" />
-				  <label>Inset:</label><input class="config-input checkbox" id="activo-shadow-inset" type="checkbox" />
-				</div>
-				<div class="config-row">
-				  <button class="config-btn" id="activo-bold"   type="button"><span>B</span></button>
-				  <button class="config-btn" id="activo-italic" type="button"><span style="font-style:italic">I</span></button>
-				</div>
-			</div>
+			<div class="ed-row">
+              <label for="fr-input-bg">Backcolor:</label>
+              <input class="ed-input color" type="color" id="fr-input-bg" />
+            </div>
 
-			<!-- ▶︎ SELECCIONADO (ocult per defecte) -->
-			<div class="state-panel is-hidden" id="panel-seleccionado">
-				<div class="config-row">
-				  <label>Borde:</label><input  type="color"  class="config-input color" id="seleccionado-border" />
-				  <label>Radio:</label><input  type="number" class="config-input num"   id="seleccionado-radius" min="0" max="20" />
-				</div>
-				<div class="config-row">
-				  <label>Color texto:</label><input type="color" class="config-input color" id="seleccionado-fontColor" />
-				  <label>Backcolor:</label><input  type="color" class="config-input color" id="seleccionado-bgColor" />
-				</div>
-				<div class="config-row">
-				  <label>X:</label><input class="config-input num" id="seleccionado-shadow-x" type="number" />
-				  <label>Y:</label><input class="config-input num" id="seleccionado-shadow-y" type="number" />
-				  <label>Dif.:</label><input class="config-input num" id="seleccionado-shadow-blur" type="number" />
-				  <label>Ext.:</label><input class="config-input num" id="seleccionado-shadow-spread" type="number" />
-				</div>
-				<div class="config-row">
-				  <label>Color:</label><input class="config-input color" id="seleccionado-shadow-color" type="color" />
-				  <label>Opacidad:</label><input class="config-input num" id="seleccionado-shadow-alpha" type="number" min="0" max="100" />
-				  <label>Inset:</label><input class="config-input checkbox" id="seleccionado-shadow-inset" type="checkbox" />
-				</div>
-				<div class="config-row">
-				  <button class="config-btn" id="seleccionado-bold"   type="button"><span>B</span></button>
-				  <button class="config-btn" id="seleccionado-italic" type="button"><span style="font-style:italic">I</span></button>
-				</div>
-			</div>
-
-			<!-- ▶︎ INACTIVO (ocult per defecte) -->
-			<div class="state-panel is-hidden" id="panel-inactivo">
-				<div class="config-row">
-				  <label>Borde:</label><input  type="color"  class="config-input color" id="inactivo-border" />
-				  <label>Radio:</label><input  type="number" class="config-input num"   id="inactivo-radius" min="0" max="20" />
-				</div>
-				<div class="config-row">
-				  <label>Color texto:</label><input type="color" class="config-input color" id="inactivo-fontColor" />
-				  <label>Backcolor:</label><input  type="color" class="config-input color" id="inactivo-bgColor" />
-				</div>
-				<div class="config-row">
-				  <label>X:</label><input class="config-input num" id="inactivo-shadow-x" type="number" />
-				  <label>Y:</label><input class="config-input num" id="inactivo-shadow-y" type="number" />
-				  <label>Dif.:</label><input class="config-input num" id="inactivo-shadow-blur" type="number" />
-				  <label>Ext.:</label><input class="config-input num" id="inactivo-shadow-spread" type="number" />
-				</div>
-				<div class="config-row">
-				  <label>Color:</label><input class="config-input color" id="inactivo-shadow-color" type="color" />
-				  <label>Opacidad:</label><input class="config-input num" id="inactivo-shadow-alpha" type="number" min="0" max="100" />
-				  <label>Inset:</label><input class="config-input checkbox" id="inactivo-shadow-inset" type="checkbox" />
-				</div>
-				<div class="config-row">
-				  <button class="config-btn" id="inactivo-bold"   type="button"><span>B</span></button>
-				  <button class="config-btn" id="inactivo-italic" type="button"><span style="font-style:italic">I</span></button>
-				</div>
-			</div>
-
+			<div class="ed-row section-title">Sombreado</div>
+            <div class="ed-row">
+              <label for="fr-shadow-x">X:</label>
+              <input class="ed-input num" type="number" id="fr-shadow-x" />
+              <label for="fr-shadow-y">Y:</label>
+              <input class="ed-input num" type="number" id="fr-shadow-y" />
+            </div>
+            <div class="ed-row">
+              <label for="fr-shadow-blur">Dif.:</label>
+              <input class="ed-input num" type="number" id="fr-shadow-blur" />
+              <label for="fr-shadow-spread">Ext.:</label>
+              <input class="ed-input num" type="number" id="fr-shadow-spread" />
+            </div>
+            <div class="ed-row">
+              <label for="fr-shadow-color">Color:</label>
+              <input class="ed-input color" type="color" id="fr-shadow-color" />
+              <label for="fr-shadow-alpha">Opacidad:</label>
+              <input class="ed-input num" type="number" id="fr-shadow-alpha" min="0" max="100" />
+            </div>
+            <div class="ed-row">
+              <label for="fr-shadow-inset">Inset:</label>
+              <input class="ed-input checkbox" type="checkbox" id="fr-shadow-inset" />
+            </div>
+      
+		  </div>
 		</li>
+		<li>
+		  <button  onclick="subsideOpen(this)"><i class="bi-card-heading"></i> Capçalera</button>
+		  <div class="ed-subside">Contingut de la capçalera</div>
+		</li>
+		<li>
+		  <button  onclick="subsideOpen(this)"><i class="bi bi-list"></i> Menú</button>
+		  <div class="ed-subside">Contingut del menú</div>
+		</li>
+	  </ul>
 
-      </ul>
-    </aside>
+    </div>
 
-    <!-- ░░ Centro – Formulario principal ░░ -->
-    <main class="visual-center">
-      <section class="visual-form" id="main-form">
-        <header class="visual-header" id="main-header">
-          <div class="header-text header-text--left"   id="header-left">Nombre formulario</div>
-          <div class="header-text header-text--center" id="header-center">Nombre de Empresa</div>
-          <div class="header-text header-text--right"  id="header-right">
-            Usuario: User01 <i class="bi bi-person-circle"></i>
-          </div>
-        </header>
-		<!-- ░░ Barra de menú de previsualització ░░ -->
-		<nav class="form-menu" id="form-menu">
-		  <div class="menu-item">Habilitada</div>
-		  <div class="menu-item selected">Seleccionada</div>
-		  <div class="menu-item disabled">Deshabilitada</div>
-		</nav>
+    <!-- Zona central: Àrea de treball (maniquí) -->
+    <div class="ed-panel">
+      <div class="f-form">
+        <div class="f-head">
+          <div id="f-head-left" class="f-head-text">Títol esquerra</div>
+          <div id="f-head-center" class="f-head-text">Títol centre</div>
+          <div id="f-head-right" class="f-head-text">Títol dreta</div>
+        </div>
+        <div class="f-menu">
+          <div class="f-menu-opcio">Opció 1</div>
+          <div class="f-menu-opcio">Opció 2</div>
+        </div>
+        <!-- Ací vindrà la resta del contingut -->
+      </div>
+    </div>
 
-        <div class="visual-content"></div>
-      </section>
-    </main>
+    <!-- Zona dreta: Editor de codi CSS -->
+    <div id="ed-side-right" class="ed-side">
+      <h3>CSS Generat</h3>
+      <textarea style="width: 100%; height: 90%;"></textarea>
+    </div>
 
-    <!-- ░░ Sidebar Derecho – Código CSS ░░ -->
-    <aside class="editor-sidebar right">
-      <div class="editor-title">Código CSS</div>
-      <!-- El css generat s’hi pot mostrar ací -->
-    </aside>
   </div>
 
-  <!-- 3· Lógica de la aplicación -->
   <script src="js/editorCSS.js"></script>
+
 </body>
+
 </html>
