@@ -3,11 +3,11 @@
 /* ╚════════════════════════════════════╝ */
 
 .f-form {
-  width: 1024px;                /* Ancho */
+  width: 1200px;                /* Ancho */
   height: 800px;               /* Alto */
-  background-color: #ffffff;   /* BackColor */
-  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);  /* Sombra (X,Y,Blur,Spread,Color,Opacitat) */
-  padding: 20px;               /* Insert (interior padding) */
+  background-color: #FFFFFF;   /* BackColor */
+  box-shadow: rgba(81, 82, 83, 0.5) 0px 0px 10px 2px;  /* Sombra (X,Y,Blur,Spread,Color,Opacitat) */
+  padding: 0px;               /* Insert (interior padding) */
   position: relative;
   border-radius: 6px;
   overflow: hidden;
@@ -18,49 +18,67 @@
 /* ╚════════════════════════════════════╝ */
 
 .f-head {
-  height: 60px;                /* Altura */
-  background-color: #eeeeee;   /* Backcolor */
+  height: 30px;                /* Altura */
+  background-color: #FFFFFF;   /* Backcolor */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
 }
 
-.f-head-text {
+.f-head-text-left,
+.f-head-text-center,
+.f-head-text-right {
   font-family: sans-serif;     /* Font */
   font-size: 16px;             /* Size */
   font-weight: normal;         /* Bold */
   font-style: normal;          /* Italica */
   text-decoration: none;       /* Subratllat */
   color: #000000;              /* Color */
-  margin-left: 0;              /* Posició (pot variar per objecte) */
+  padding: 0 5px
 }
+.f-head-text-left {text-align: left;}
+.f-head-text-center {text-align: center;}
+.f-head-text-right {text-align: right;}
 
 /* ╔════════════════════════════════════╗ */
 /* ║               MENU                 ║ */
 /* ╚════════════════════════════════════╝ */
 .f-menu {
-  height: 40px;                /* Altura */
+  border: 0px solid #aaaaaa;
+  height: 30px;                /* Altura */
   background-color: #dddddd;   /* BackColor */
+  box-shadow: rgba(20, 20, 20, 0.6) 0px 0px 4px 0px;
   font-family: sans-serif;     /* Font */
   font-size: 14px;             /* Size */
   display: flex;
   align-items: center;
   padding: 0 10px;             /* Insert (separació lateral) */
-  box-shadow: none;            /* Ombra per defecte (X, Y, Dif, Ext, Color, Opacitat) */
 }
 
 /* Opció de menú individual */
-.f-menu-opcio {
-  border: 1px solid #aaaaaa;   /* BordeColor */
+.f-menu-opcio-act,
+.f-menu-opcio-des,
+.f-mrnu-opcio-sel {
+  border: 0px solid #aaaaaa;   /* BordeColor */
   border-radius: 4px;          /* Ratio */
   color: #000000;              /* FontColor */
-  background-color: #ffffff;   /* BackColor */
+  background-color: #ffffff00;   /* BackColor */
   font-weight: normal;         /* Bold */
   font-style: normal;          /* Italica */
   text-decoration: none;       /* Subratllat */
-  margin-right: 10px;
-  padding: 4px 10px;
+  margin-right: 15px;
+  padding: 5px 7px;
   cursor: pointer;
   transition: 0.2s ease;
+}
+.f-menu-opcio-act {
+}
+.f-menu-opcio-des {
+  color: #808080;              /* FontColor */
+}
+.f-menu-opcio-sel {
+  border: 1px solid #aaaaaa;   /* BordeColor */
+  border-radius: 5px;          /* Ratio */
+  font-weight: bold;
 }
