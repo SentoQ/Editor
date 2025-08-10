@@ -1,38 +1,29 @@
 
 // Funcions de ed-side
-// Tancar si fem clic fora de ed-subside
-document.addEventListener('click', function (e) {
-   let p   // ed-subside de collection
+// **********  EVENTS *****************
 
-  // Evitar tancar si el clic és dins d’un .ed-subside
-  if (e.target.closest('.ed-subside')) return;
-
-  // Si clic fora del side o en una zona buida del side (però no en un botó)
-  if (e.target.closest('.ed-side') && !e.target.closest('button')) {
-    document.querySelectorAll('.ed-subside.open').forEach(p => {
-		p.classList.remove('open');
-		p.previousElementSibling.classList.remove('active');
-	});
-  }
-});
-
-// Funcions de ed-subside
-// Obrir/tancar la subside
-function subsideOpen(btn) {
-  // Tancar tot
-  document.querySelectorAll('.ed-subside.open').forEach(p => {
-    p.classList.remove('open');
-    if (p.previousElementSibling && p.previousElementSibling.tagName === 'BUTTON') 
-      p.previousElementSibling.classList.remove('active');
-    if (p.previousElementSibling?.dataset.anex) {
-      const classe = p.previousElementSibling.dataset.anex.split(/\s*[\{\(]/)[0].trim();
+function subsideClose(p) {
+  p.classList.remove('open');
+  const btn = p.previousElementSibling;
+  if (btn && btn.tagName === 'BUTTON') {
+    btn.classList.remove('active');
+    if (btn.dataset.anex) {
+      const classe = btn.dataset.anex.split(/\s*[\{\(]/)[0].trim();
       const target = document.querySelector('.' + classe);
       if (target) target.style.display = 'none';
     }
+  }
+}
+
+function subsideOpen(btn) {
+  // Tancar tots els subsides oberts
+  document.querySelectorAll('.ed-subside.open').forEach(p => {
+    subsideClose(p);
   });
 
-  if (!btn.nextElementSibling.classList.contains('open')) {
-    btn.nextElementSibling.classList.add('open');
+  const subside = btn.nextElementSibling;
+  if (!subside.classList.contains('open')) {
+    subside.classList.add('open');
     btn.classList.add('active');
 
     if (btn.dataset.anex) {
@@ -66,16 +57,28 @@ function subsideOpen(btn) {
 }
 
 
+function tabShow(target) {
+  const index = target.getAttribute('data-tabidx');
+  if (index) {
+    if (!target.classList.contains('active')) {
+      const group = index.charAt(0);
 
+      document.querySelectorAll('.ed-tab').forEach(tab => {
+        if (tab.getAttribute('data-tabidx')?.charAt(0) === group) {
+          tab.classList.remove('active');
+        }
+      });
+      target.classList.add('active');
 
-
-function showTab(index) {
-  document.querySelectorAll('.ed-tab').forEach((tab, i) => {
-    tab.classList.toggle('active', i === index);
-  });
-  document.querySelectorAll('.ed-tab-content').forEach((content, i) => {
-    content.classList.toggle('active', i === index);
-  });
+      document.querySelectorAll('.ed-tab-content').forEach(content => {
+        if (content.getAttribute('data-tabidx')?.charAt(0) === group) {
+          content.classList.remove('active');
+        }
+      });
+      const contentToShow = document.querySelector(`.ed-tab-content[data-tabidx="${index}"]`);
+      if (contentToShow) contentToShow.classList.add('active');
+    }
+  }
 }
 
 
@@ -240,16 +243,31 @@ function rgbTohex(rgb) {
   return `#${r}${g}${b}${a || ""}`;
 } 
 
-
+// Cos executable
 // Events dels objectes
 window.addEventListener("DOMContentLoaded", () => {
   syncAllInputsFromCSS();  // Carrega valors del CSS als input 
   bindInputsToCSS();       // Enllaça els inputs perquè s'actualitzin el CSS
-});
-document.querySelectorAll('.ed-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('active');
-	inputTocss(btn);
+
+  document.addEventListener('click', (e) => {
+	  const target = e.target;
+
+	  if (target.classList.contains('ed-btn')) {
+		target.classList.toggle('active');
+		inputTocss(target);
+	  }
+
+	  if (target.classList.contains('ed-side-bt')) {
+		subsideOpen(target);
+	  }
+
+	  if (target.classList.contains('ed-closeside-bt')) {
+		tancarFinestra(target);
+	  }
+
+	if (target.classList.contains('ed-tab')) {
+	  tabShow(target);
+	}
   });
 }); 
 

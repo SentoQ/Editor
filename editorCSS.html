@@ -24,7 +24,7 @@
 	  <ul>
 		<li>
 	<! --- FORMULARI --- >
-		  <button class="ed-side-bt" onclick="subsideOpen(this)"><i class="bi bi-layout-text-window-reverse"></i> Formulario</button>
+		  <button class="ed-side-bt"><i class="bi bi-layout-text-window-reverse"></i> Formulario</button>
 		  <div class="ed-subside">
 			
 			<div class="ed-row section-title">General</div>
@@ -69,7 +69,7 @@
 		</li>
 		<li>
 	<! --- CAPÇALERA --- >
-		  <button class="ed-side-bt" onclick="subsideOpen(this)"><i class="bi-card-heading"></i> Capçalera</button>
+		  <button class="ed-side-bt"><i class="bi-card-heading"></i> Capçalera</button>
 		  <div class="ed-subside">
 			
 			<div class="ed-row section-title">General</div>
@@ -83,15 +83,15 @@
 			<div class="ed-row section-title">Textos</div>
 			<div class="ed-tabs-container">
 			  <div class="ed-tabs">
-				<div class="ed-tab active" onclick="showTab(0)">Izq.</div>
-				<div class="ed-tab" onclick="showTab(1)">Centro</div>
-				<div class="ed-tab" onclick="showTab(2)">Der.</div>
+				<div class="ed-tab active" data-tabidx="a0">Izq.</div>
+				<div class="ed-tab" data-tabidx="a1">Centro</div>
+				<div class="ed-tab" data-tabidx="a2">Der.</div>
 			  </div>
 			</div>
 			<div class="ed-row">
 
 			<! --- TEXT ESQUERRE --- >
-			  <div class="ed-tab-content active">
+			  <div class="ed-tab-content active" data-tabidx="a0">
 				<div class="ed-row">
 				  <label for="hd-input-textleft">Texto:</label>
 				  <input class="ed-input text" type="text" id="hd-input-textleft" data-fclass="f-head-text-left" data-fproperty="textContent" data-findex="" data-funit=""/>
@@ -116,7 +116,7 @@
 			  </div>
 
 			<! --- TEXT CENTRE --- >
-			  <div class="ed-tab-content">
+			  <div class="ed-tab-content"  data-tabidx="a1">
 				<div class="ed-row">
 				  <label for="hd-input-textcenter">Texto:</label>
 				  <input class="ed-input text" type="text" id="hd-input-textleft" data-fclass="f-head-text-center" data-fproperty="textContent" data-findex="" data-funit=""/>
@@ -141,7 +141,7 @@
 			  </div>
 
 			<! --- TEXT DRETA --- >
-			  <div class="ed-tab-content">
+			  <div class="ed-tab-content"  data-tabidx="a2">
 			    <div class="ed-row">
 				  <label for="hd-input-textright">Texto:</label>
 				  <input class="ed-input text" type="text" id="hd-input-textright" data-fclass="f-head-text-right" data-fproperty="textContent" data-findex="" data-funit=""/>
@@ -171,7 +171,7 @@
 		</li>
 		<li>
 	<! --- MENU --- !>
-		  <button  class="ed-side-bt" onclick="subsideOpen(this)"><i class="bi bi-list"></i> Menú</button>
+		  <button  class="ed-side-bt" data-anex="f-marc{top:.f-menu-opcio-act+40px left:.f-menu-opcio-act width:180px height:300px }"><i class="bi bi-list"></i> Menú</button>
 		  <div class="ed-subside">
 			<div class="ed-row section-title">General</div>
 			<div class="ed-row">
@@ -198,17 +198,18 @@
 			  <label for="mn-input-gap">Separación:</label>
 			  <input class="ed-input num" type="number" id="mn-input-gap" min="0" max="30"  data-fclass="f-menu" data-fproperty="gap" data-findex="" data-funit="px"/>
 			</div>
+	<! --- OPCIONS MENU --->
 			<div class="ed-rSow section-title">Aspecto opciones</div>
 			<div class="ed-tabs-container">
 			  <div class="ed-tabs">
-				<div class="ed-tab active" onclick="showTab(3)">Activado.</div>
-				<div class="ed-tab" onclick="showTab(4)">Desactv.</div>
-				<div class="ed-tab" onclick="showTab(5)">Seleccionado.</div>
+				<div class="ed-tab active" data-tabidx="b0">Activado.</div>
+				<div class="ed-tab" data-tabidx="b1">Desactv.</div>
+				<div class="ed-tab" data-tabidx="b2">Seleccionado.</div>
 			  </div>
 			</div>
 			<div class="ed-row">
 		<! --- OPCIO ACTIVA --->
-			  <div class="ed-tab-content active">
+			  <div class="ed-tab-content active" data-tabidx="b0">
 				<div class="ed-row">
 				  <label for="om-input-colora">Col:</label>
 				  <input class="ed-input color" type="color" id="om-input-colora"  data-fclass="f-menu-opcio-act" data-fproperty="color" data-findex="" data-funit="HEX"/>
@@ -230,7 +231,7 @@
 				</div>
 			  </div>
 		<! --- OPCIO DESACTIVA --->
-			  <div class="ed-tab-content">
+			  <div class="ed-tab-content" data-tabidx="b1">
 				<div class="ed-row">
 				  <label for="om-input-colord">Col:</label>
 				  <input class="ed-input color" type="color" id="om-input-colord"  data-fclass="f-menu-opcio-des" data-fproperty="color" data-findex="" data-funit="HEX"/>
@@ -252,7 +253,7 @@
 				</div>
 			  </div>
 		<! --- OPCIO SELECCIÓ --->
-			  <div class="ed-tab-content">
+			  <div class="ed-tab-content" data-tabidx="b2">
 				<div class="ed-row">
 				  <label for="om-input-colors">Col:</label>
 				  <input class="ed-input color" type="color" id="om-input-colors"  data-fclass="f-menu-opcio-sel" data-fproperty="color" data-findex="" data-funit="HEX"/>
@@ -274,6 +275,32 @@
 				</div>
 			  </div>
 			</div>
+
+	<! --- OPCIO SUBMENU --->
+			<div class="ed-rSow section-title">Aspecto opciones</div>
+			<div class="ed-tabs-container">
+			  <div class="ed-tabs">
+				<div class="ed-tab" data-tabidx="b3">Act.</div>
+				<div class="ed-tab" data-tabidx="b4">Des.</div>
+				<div class="ed-tab" data-tabidx="b5">S Ac.</div>
+				<div class="ed-tab" data-tabidx="b6">S Ds.</div>
+				<div class="ed-tab" data-tabidx="b7">Sep.</div>
+				
+			  </div>
+			</div>
+			<div class="ed-row">
+		<! --- OPCIO ACTIVA --->
+			  <div class="ed-tab-content" data-tabidx="b3">
+			  </div>
+			  <div class="ed-tab-content" data-tabidx="b4">
+			  </div>
+			  <div class="ed-tab-content" data-tabidx="b5">
+			  </div>
+			  <div class="ed-tab-content" data-tabidx="b6">
+			  </div>
+			  <div class="ed-tab-content" data-tabidx="b7">
+			  </div>
+			</div>  
 		  </div>
 		</li>
 	  </ul>
@@ -281,7 +308,7 @@
 	  <h3>Elementos</h3>
 	  <ul> 
 		<li>
-		  <button  class="ed-side-bt" onclick="subsideOpen(this)" data-anex="f-marc{top:.f-menu-opcio-act+40px left:.f-menu-opcio-act}"><i class="bi bi-square"></i> Cuadros</button>
+		  <button  class="ed-side-bt" data-anex="f-marc{width:400px height:400px left:400px top:120px}"><i class="bi bi-square"></i> Cuadros</button>
 		  <div class="ed-subside">
 			<div class="ed-row section-title">Background</div>
 			  <div class="ed-row">
