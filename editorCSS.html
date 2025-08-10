@@ -20,7 +20,7 @@
     
     <!-- Zona esquerra: Elements -->
     <div id="ed-side-left" class="ed-side">
-      <h3>Elementos</h3>
+      <h3>Formulario</h3>
 	  <ul>
 		<li>
 	<! --- FORMULARI --- >
@@ -142,7 +142,7 @@
 
 			<! --- TEXT DRETA --- >
 			  <div class="ed-tab-content">
-			  <div class="ed-row">
+			    <div class="ed-row">
 				  <label for="hd-input-textright">Texto:</label>
 				  <input class="ed-input text" type="text" id="hd-input-textright" data-fclass="f-head-text-right" data-fproperty="textContent" data-findex="" data-funit=""/>
 				</div>
@@ -175,12 +175,10 @@
 		  <div class="ed-subside">
 			<div class="ed-row section-title">General</div>
 			<div class="ed-row">
-			  <label for="mn-input-height">Alt.:</label>
+			  <label for="mn-input-height">Altura.:</label>
 			  <input class="ed-input num" type="number" id="mn-input-height" min="10" max="40"  data-fclass="f-menu" data-fproperty="height" data-findex="" data-funit="px"/>
-			  <label for="mn-input-bgcolor">BG::</label>
+			  <label for="mn-input-bgcolor">Fondo::</label>
 			  <input class="ed-input color" type="color" id="mn-input-bgcolor"  data-fclass="f-menu" data-fproperty="background-color" data-findex="" data-funit="HEX"/>
-			  <label for="mn-input-padding">Aj.:</label>
-			  <input class="ed-input num" type="number" id="mn-input-padding" min="0" max="30"  data-fclass="f-menu" data-fproperty="padding" data-findex="2" data-funit="px"/>
 			</div>
 			<div class="ed-row">
 			  <label for="mn-input-font">Font:</label>
@@ -193,9 +191,14 @@
 			  <input class="ed-input color" type="color" id="mn-input-swcolor"  data-fclass="f-menu" data-fproperty="box-shadow" data-findex="1-rgb[1:3]" data-funit="HEX"/>
 			  <label for="mn-input-swopc">Opacidad:</label>
 			  <input class="ed-input num" type="number" id="mn-input-swopc" min="0" max="100"  data-fclass="f-menu" data-fproperty="box-shadow" data-findex="1-[4]" data-funit="%"/>
-		
 			</div>
-			<div class="ed-row section-title">Aspecto opciones</div>
+			<div class="ed-row">
+			  <label for="mn-input-padding">Ajuste:</label>
+			  <input class="ed-input num" type="number" id="mn-input-padding" min="0" max="30"  data-fclass="f-menu" data-fproperty="padding" data-findex="2" data-funit="px"/>
+			  <label for="mn-input-gap">Separación:</label>
+			  <input class="ed-input num" type="number" id="mn-input-gap" min="0" max="30"  data-fclass="f-menu" data-fproperty="gap" data-findex="" data-funit="px"/>
+			</div>
+			<div class="ed-rSow section-title">Aspecto opciones</div>
 			<div class="ed-tabs-container">
 			  <div class="ed-tabs">
 				<div class="ed-tab active" onclick="showTab(3)">Activado.</div>
@@ -207,25 +210,112 @@
 		<! --- OPCIO ACTIVA --->
 			  <div class="ed-tab-content active">
 				<div class="ed-row">
-				  <label for="om-input-color">Col:</label>
-				  <input class="ed-input color" type="color" id="om-input-color"  data-fclass="f-menu-opcio-act" data-fproperty="color" data-findex="" data-funit="HEX"/>
-				  <label for="om-input-bgcolor">Fon:</label>
-				  <input class="ed-input color" type="color" id="om-input-bgcolor"  data-fclass="f-menu-opcio-act" data-fproperty="background-color" data-findex="1-rgb[1:3]" data-funit="HEX"/>
-				  <label for="om-input-bgopc">Opc:</label>
-				  <input class="ed-input num" type="number" id="on-input-bgopc" min="0" max="100"  data-fclass="f-menu-opcio-act" data-fproperty="background-color" data-findex="1-[4]" data-funit="%"/>
-				
+				  <label for="om-input-colora">Col:</label>
+				  <input class="ed-input color" type="color" id="om-input-colora"  data-fclass="f-menu-opcio-act" data-fproperty="color" data-findex="" data-funit="HEX"/>
+				  <label for="om-input-bgcolora">Fon:</label>
+				  <input class="ed-input color" type="color" id="om-input-bgcolora"  data-fclass="f-menu-opcio-act" data-fproperty="background-color" data-findex="1-rgb[1:3]" data-funit="HEX"/>
+				  <label for="om-input-bgopca">Opc:</label>
+				  <input class="ed-input num" type="number" id="on-input-bgopca" min="0" max="100"  data-fclass="f-menu-opcio-act" data-fproperty="background-color" data-findex="1-[4]" data-funit="%"/>
 				</div>
-			  <div class="ed-tab-content">Desactivado
-
-
+				<div class="ed-row"> Aspecto:
+				  <button class="ed-btn" type="button" id="om-bolt-act" data-fclass="f-menu-opcio-act" data-fproperty="font-weight" data-funit="700">B</button>
+				  <button class="ed-btn" type="button" id="om-ital-act" data-fclass="f-menu-opcio-act" data-fproperty="font-style" data-funit="italic">I</button>
+				  <button class="ed-btn" type="button" id="pm-ulin-ac" data-fclass="f-menu-opcio-act" data-fproperty="text-decoration" data-funit="underline">S</button>
+				</div>
+				<div class="ed-row"> Border:
+				  <label for="om-border-gros-act">Grosor:</label>
+				  <input class="ed-input num" type="number" id="om-border-gros-act" min="0" max="5"  data-fclass="f-menu-opcio-act" data-fproperty="border" data-findex="1" data-funit="px"/>
+				  <label for="om-border-color-act">Fon:</label>
+				  <input class="ed-input color" type="color" id="om-border-color-act"  data-fclass="f-menu-opcio-act" data-fproperty="border" data-findex="3" data-funit="HEX"/>
+				</div>
 			  </div>
-			  <div class="ed-tab-content">Seleccionado
-
-
-
+		<! --- OPCIO DESACTIVA --->
+			  <div class="ed-tab-content">
+				<div class="ed-row">
+				  <label for="om-input-colord">Col:</label>
+				  <input class="ed-input color" type="color" id="om-input-colord"  data-fclass="f-menu-opcio-des" data-fproperty="color" data-findex="" data-funit="HEX"/>
+				  <label for="om-input-bgcolord">Fon:</label>
+				  <input class="ed-input color" type="color" id="om-input-bgcolord"  data-fclass="f-menu-opcio-des" data-fproperty="background-color" data-findex="1-rgb[1:3]" data-funit="HEX"/>
+				  <label for="om-input-bgopcd">Opc:</label>
+				  <input class="ed-input num" type="number" id="on-input-bgopcd" min="0" max="100"  data-fclass="f-menu-opcio-des" data-fproperty="background-color" data-findex="1-[4]" data-funit="%"/>
+				</div>
+				<div class="ed-row"> Aspecto:
+				  <button class="ed-btn" type="button" id="om-bolt-des" data-fclass="f-menu-opcio-des" data-fproperty="font-weight" data-funit="700">B</button>
+				  <button class="ed-btn" type="button" id="om-ital-des" data-fclass="f-menu-opcio-des" data-fproperty="font-style" data-funit="italic">I</button>
+				  <button class="ed-btn" type="button" id="pm-ulin-des" data-fclass="f-menu-opcio-des" data-fproperty="text-decoration" data-funit="underline">S</button>
+				</div>
+				<div class="ed-row"> Border:
+				  <label for="om-border-gros-des">Grosor:</label>
+				  <input class="ed-input num" type="number" id="om-border-gros-des" min="0" max="5"  data-fclass="f-menu-opcio-des" data-fproperty="border" data-findex="1" data-funit="px"/>
+				  <label for="om-border-color-des">Fon:</label>
+				  <input class="ed-input color" type="color" id="om-border-color-des"  data-fclass="f-menu-opcio-des" data-fproperty="border" data-findex="3" data-funit="HEX"/>
+				</div>
+			  </div>
+		<! --- OPCIO SELECCIÓ --->
+			  <div class="ed-tab-content">
+				<div class="ed-row">
+				  <label for="om-input-colors">Col:</label>
+				  <input class="ed-input color" type="color" id="om-input-colors"  data-fclass="f-menu-opcio-sel" data-fproperty="color" data-findex="" data-funit="HEX"/>
+				  <label for="om-input-bgcolors">Fon:</label>
+				  <input class="ed-input color" type="color" id="om-input-bgcolors"  data-fclass="f-menu-opcio-sel" data-fproperty="background-color" data-findex="1-rgb[1:3]" data-funit="HEX"/>
+				  <label for="om-input-bgopcs">Opc:</label>
+				  <input class="ed-input num" type="number" id="on-input-bgopcs" min="0" max="100"  data-fclass="f-menu-opcio-sel" data-fproperty="background-color" data-findex="1-[4]" data-funit="%"/>
+				</div>
+				<div class="ed-row"> Aspecto:
+				  <button class="ed-btn" type="button" id="om-bolt-sel" data-fclass="f-menu-opcio-sel" data-fproperty="font-weight" data-funit="700">B</button>
+				  <button class="ed-btn" type="button" id="om-ital-sel" data-fclass="f-menu-opcio-sel" data-fproperty="font-style" data-funit="italic">I</button>
+				  <button class="ed-btn" type="button" id="pm-ulin-sel" data-fclass="f-menu-opcio-sel" data-fproperty="text-decoration" data-funit="underline">S</button>
+				</div>
+				<div class="ed-row"> Border:
+				  <label for="om-border-gros-sel">Grosor:</label>
+				  <input class="ed-input num" type="number" id="om-border-gros-sel" min="0" max="5"  data-fclass="f-menu-opcio-sel" data-fproperty="border" data-findex="1" data-funit="px"/>
+				  <label for="om-border-color-sel">Fon:</label>
+				  <input class="ed-input color" type="color" id="om-border-color-sel"  data-fclass="f-menu-opcio-sel" data-fproperty="border" data-findex="3" data-funit="HEX"/>
+				</div>
 			  </div>
 			</div>
 		  </div>
+		</li>
+	  </ul>
+	<! --- ELEMENTS D AREA --->
+	  <h3>Elementos</h3>
+	  <ul> 
+		<li>
+		  <button  class="ed-side-bt" onclick="subsideOpen(this)" data-anex="f-marc{top:.f-menu-opcio-act+40px left:.f-menu-opcio-act}"><i class="bi bi-square"></i> Cuadros</button>
+		  <div class="ed-subside">
+			<div class="ed-row section-title">Background</div>
+			  <div class="ed-row">
+				<label for="mc-input-bgc">Color:</label>
+				<input class="ed-input color" type="color" id="mc-input-bgc" data-fclass="f-marc" data-fproperty="background-color" data-findex="1-rgb[1:3]" data-funit="HEX"/>
+				<label for="mc-input-bgo">Opacidad:</label>
+				<input class="ed-input num" type="number" id="mc-input-bgo" min="0" max="100"  data-fclass="f-marc" data-fproperty="background-color" data-findex="1-[4]" data-funit="%"/>
+			  </div>
+			  <div class="ed-row section-title">Sombreado</div>
+			  <div class="ed-row">
+				<label for="mc-shadow-x">X:</label>
+				<input class="ed-input num" type="number" id="mc-shadow-x" data-fclass="f-marc" data-fproperty="box-shadow" data-findex="2" data-funit="px"/>
+				<label for="mc-shadow-y">Y:</label>
+				<input class="ed-input num" type="number" id="mc-shadow-y" data-fclass="f-marc" data-fproperty="box-shadow" data-findex="3" data-funit="px"/>
+			  </div>
+			  <div class="ed-row">
+				<label for="mc-shadow-blur">Dif.:</label>
+				<input class="ed-input num" type="number" id="mc-shadow-blur" data-fclass="f-marc" data-fproperty="box-shadow" data-findex="4" data-funit="px"/>
+				<label for="mc-shadow-spread">Ext.:</label>
+				<input class="ed-input num" type="number" id="mc-shadow-spread" data-fclass="f-marc" data-fproperty="box-shadow" data-findex="5" data-funit="px"/>
+			  </div>
+			  <div class="ed-row">
+				<label for="mc-shadow-color">Color:</label>
+				<input class="ed-input color" type="color" id="mc-shadow-color" data-fclass="f-marc" data-fproperty="box-shadow" data-findex="1-rgb[1:3]" data-funit=""/>
+				<label for="mc-shadow-alpha">Opacidad:</label>
+				<input class="ed-input num" type="number" id="mc-shadow-alpha" min="0" max="100" data-fclass="f-marc" data-fproperty="box-shadow" data-findex="1-[4]" data-funit="%"/>
+			  </div>
+			  <div class="ed-row">
+				<label for="mc-shadow-inset">Inset:</label>
+				<input class="ed-input checkbox" type="checkbox" id="fr-shadow-inset" data-fclass="f-marc" data-fproperty="box-shadow" data-findex="6" data-funit="inset"/>
+			  </div>		
+		  </div>
+
+		
 		</li>
 	  </ul>
 
@@ -245,7 +335,9 @@
 		  <div class="f-menu-opcio-sel">Seleccionado</div>
 		 
         </div>
-        <!-- Ací vindrà la resta del contingut -->
+		<div class="f-marc"></div>
+
+ <!-- Ací vindrà la resta del contingut -->
       </div>
     </div>
 

@@ -19,20 +19,55 @@ document.addEventListener('click', function (e) {
 // Funcions de ed-subside
 // Obrir/tancar la subside
 function subsideOpen(btn) {
-   let p   // ed-subside de collection
- 11
   // Tancar tot
   document.querySelectorAll('.ed-subside.open').forEach(p => {
     p.classList.remove('open');
-    if (p.previousElementSibling && p.previousElementSibling.tagName === 'BUTTON') p.previousElementSibling.classList.remove('active');
+    if (p.previousElementSibling && p.previousElementSibling.tagName === 'BUTTON') 
+      p.previousElementSibling.classList.remove('active');
+    if (p.previousElementSibling?.dataset.anex) {
+      const classe = p.previousElementSibling.dataset.anex.split(/\s*[\{\(]/)[0].trim();
+      const target = document.querySelector('.' + classe);
+      if (target) target.style.display = 'none';
+    }
   });
 
-  // Obrir si estava tancat
   if (!btn.nextElementSibling.classList.contains('open')) {
     btn.nextElementSibling.classList.add('open');
     btn.classList.add('active');
+
+    if (btn.dataset.anex) {
+      const [classe, estilos] = btn.dataset.anex.split(/\s*\{([^}]*)\}/).filter(Boolean);
+      const target = document.querySelector('.' + classe);
+      if (target) target.style.display = 'block';
+
+      if (estilos) {
+        estilos.trim().split(/\s+/).forEach(propVal => {
+          const [prop, val] = propVal.split(':').map(s => s.trim());
+          if (prop && val) {
+            let finalVal = val;
+            const refMatch = val.match(/^([.#][\w-]+)([+\-]\d+(?:px|%|em)?)?$/);
+            if (refMatch) {
+              const refEl = document.querySelector(refMatch[1]);
+              if (refEl) {
+                const osprop = 'offset' + prop.charAt(0).toUpperCase() + prop.slice(1);
+                const baseVal = (osprop in refEl) ? refEl[osprop] : parseFloat(getComputedStyle(refEl)[prop]) || 0;
+                const offset = refMatch[2] || '+0px';
+                const numericOffset = parseFloat(offset);
+                const unit = offset.replace(/^[+\-]?\d+/, '') || 'px';
+                finalVal = (baseVal + numericOffset) + unit;
+              }
+            }
+            target.style[prop] = finalVal;
+          }
+        });
+      }
+    }
   }
 }
+
+
+
+
 
 function showTab(index) {
   document.querySelectorAll('.ed-tab').forEach((tab, i) => {
@@ -48,6 +83,7 @@ function showTab(index) {
 // Veure atribut total o parcial d'un objecte 
 function getCSS(classe, prop, ix) {
   let valcss, modo, ini, fin;
+
   let el =  document.querySelector("." + classe);
   let obj = getComputedStyle(el);
   if (prop in el.style) {

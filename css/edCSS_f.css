@@ -54,31 +54,68 @@
   display: flex;
   align-items: center;
   padding: 0 10px;             /* Insert (separació lateral) */
+  gap: 10px;
 }
 
 /* Opció de menú individual */
 .f-menu-opcio-act,
 .f-menu-opcio-des,
 .f-mrnu-opcio-sel {
-  border: 0px solid #aaaaaa;   /* BordeColor */
-  border-radius: 4px;          /* Ratio */
-  color: #000000;              /* FontColor */
-  background-color: #ffffff00;   /* BackColor */
-  font-weight: normal;         /* Bold */
-  font-style: normal;          /* Italica */
-  text-decoration: none;       /* Subratllat */
-  margin-right: 15px;
-  padding: 5px 7px;
   cursor: pointer;
   transition: 0.2s ease;
 }
 .f-menu-opcio-act {
+  padding: 5px 7px;
+  color: #000000;              /* FontColor */
+  border: 0px solid #aaaaaa;   /* BordeColor */
+  border-radius: 5px;          /* Ratio */
+  background-color: #ffffff00;   /* BackColor */
+  font-weight: normal;
+  font-style: normal;          /* Italica */
+  text-decoration: none;       /* Subratllat */
 }
+	
 .f-menu-opcio-des {
+  padding: 5px 7px;
   color: #808080;              /* FontColor */
+  border: 0px solid #aaaaaa;   /* BordeColor */
+  border-radius: 5px;          /* Ratio */
+  background-color: #ffffff00;   /* BackColor */
+  font-weight: normal;
+  font-style: normal;          /* Italica */
+  text-decoration: none;       /* Subratllat */
 }
 .f-menu-opcio-sel {
+  padding: 5px 7px;
+  color: #000000;              /* FontColor */
   border: 1px solid #aaaaaa;   /* BordeColor */
   border-radius: 5px;          /* Ratio */
+  background-color: #ffffff00;   /* BackColor */
   font-weight: bold;
+  font-style: normal;          /* Italica */
+  text-decoration: none;       /* Subratllat */
 }
+  #flotant {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    box-shadow: 0 0 8px #aaa;
+    z-index: 10;
+    display: none;
+  }
+  
+ .f-marc{
+    position: absolute;
+	left: 400px;
+	top: 200px;
+    padding: 8px 12px;
+    z-index: 10;
+	width: 200px;
+	height: 300px;
+	background-color: #f0f0ff80;   /* BackColor */
+	border: 1px solid #000000;
+	border-radius: 5px;
+	box-shadow: #00000080 3px 3px 8px 3px;
+    display: none;
+ }
