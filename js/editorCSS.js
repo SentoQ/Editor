@@ -9,7 +9,12 @@ function subsideClose(p) {
     btn.classList.remove('active');
     if (btn.dataset.anex) {
       const classe = btn.dataset.anex.split(/\s*[\{\(]/)[0].trim();
-      const target = document.querySelector('.' + classe);
+	  let target;
+	  if (classe.startsWith('#')) {
+		target = document.getElementById(classe.slice(1));
+	  } else {
+		target = document.querySelector(classe.startsWith('.') ? classe : '.' + classe);
+	  }
       if (target) target.style.display = 'none';
     }
   }
@@ -28,8 +33,14 @@ function subsideOpen(btn) {
 
     if (btn.dataset.anex) {
       const [classe, estilos] = btn.dataset.anex.split(/\s*\{([^}]*)\}/).filter(Boolean);
-      const target = document.querySelector('.' + classe);
-      if (target) target.style.display = 'block';
+	  let target;
+	  if (classe.startsWith('#')) {
+		target = document.getElementById(classe.slice(1));
+	  } else {
+		target = document.querySelector(classe.startsWith('.') ? classe : '.' + classe);
+	  }
+	  console.log(classe, target);	
+	  if (target) target.style.display = 'block';
 
       if (estilos) {
         estilos.trim().split(/\s+/).forEach(propVal => {
@@ -132,7 +143,6 @@ function setCSS(classe, prop, ix, valor) {
 
 	valor=tcss.join(" ");
   }
-  console.log ("setCCS >>" , classe, prop);
   if (prop in obj.style) {
 	obj.style.setProperty(prop, valor);
   } else {
@@ -246,30 +256,31 @@ function rgbTohex(rgb) {
 // Cos executable
 // Events dels objectes
 window.addEventListener("DOMContentLoaded", () => {
-  syncAllInputsFromCSS();  // Carrega valors del CSS als input 
-  bindInputsToCSS();       // Enllaça els inputs perquè s'actualitzin el CSS
+  syncAllInputsFromCSS();  
+  bindInputsToCSS();       
 
   document.addEventListener('click', (e) => {
-	  const target = e.target;
+    const target = e.target;
 
-	  if (target.classList.contains('ed-btn')) {
-		target.classList.toggle('active');
-		inputTocss(target);
-	  }
+    if (target.classList.contains('ed-btn')) {
+      target.classList.toggle('active');
+      inputTocss(target);
+    }
 
-	  if (target.classList.contains('ed-side-bt')) {
-		subsideOpen(target);
-	  }
+    if (target.classList.contains('ed-side-bt')) {
+      subsideOpen(target);
+    }
 
-	  if (target.classList.contains('ed-closeside-bt')) {
-		tancarFinestra(target);
-	  }
+    if (target.closest('.ed-closeside-bt')) {
+      const subside = target.closest('.ed-closeside-bt').closest('.ed-subside');
+      if (subside) subsideClose(subside);
+    }
 
-	if (target.classList.contains('ed-tab')) {
-	  tabShow(target);
-	}
+    if (target.classList.contains('ed-tab')) {
+      tabShow(target);
+    }
   });
-}); 
+});
 
 
  // Afegir opcions als selects

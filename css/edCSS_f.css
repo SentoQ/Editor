@@ -94,28 +94,39 @@
   font-weight: bold;
   font-style: normal;          /* Italica */
   text-decoration: none;       /* Subratllat */
-}
-  #flotant {
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    box-shadow: 0 0 8px #aaa;
-    z-index: 10;
-    display: none;
-  }
-  
+}  
  .f-marc{
     position: absolute;
-	left: 400px;
-	top: 200px;
     padding: 8px 12px;
     z-index: 10;
-	width: 200px;
-	height: 300px;
 	background-color: #f0f0ff80;   /* BackColor */
 	border: 1px solid #000000;
 	border-radius: 5px;
 	box-shadow: #00000080 3px 3px 8px 3px;
     display: none;
  }
+   .f-marc.submenu{
+	left: 400px;
+	top: 200px;
+	width: 200px;
+	height: 300px;
+    display: none;
+}
+.f-sb-opc {
+  color: #000000;
+}
+.f-sb-opc.disable {
+  color: #808080;
+}
+.f-sb-opc.true {
+  background-color: #FFFFFF;
+  color: inherit;
+}
+.f-sb-opc.true.disable {
+  background-color: #6090c0;
+  color: inherit;
+}
+.f-sb-sep {
+  border-bottom: 1.5px solid #ccc;
+  margin: 6px 0;
+}
