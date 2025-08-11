@@ -97,7 +97,7 @@
 }  
  .f-marc{
     position: absolute;
-    padding: 8px 12px;
+    padding: 1px 12px;
     z-index: 10;
 	background-color: #f0f0ff80;   /* BackColor */
 	border: 1px solid #000000;
@@ -105,28 +105,28 @@
 	box-shadow: #00000080 3px 3px 8px 3px;
     display: none;
  }
-   .f-marc.submenu{
-	left: 400px;
-	top: 200px;
-	width: 200px;
-	height: 300px;
-    display: none;
+.f-sb-opc-enabled,
+.f-sb-opc-disabled,
+.sel {
+  margin: 3px 5px;
+  padding: 0 5px;
 }
-.f-sb-opc {
-  color: #000000;
+.f-sb-opc-enabled {
+  color: #000;
 }
-.f-sb-opc.disable {
-  color: #808080;
+.f-sb-opc-disabled {
+  color: #606060;
 }
-.f-sb-opc.true {
-  background-color: #FFFFFF;
-  color: inherit;
-}
-.f-sb-opc.true.disable {
-  background-color: #6090c0;
-  color: inherit;
+/* Si vols diferenciar el "select" afegeixes una altra classe o selector */
+.f-sb-opc-enabled.sel {
+  background-color: #b8c3ff;
+  border-radius: 5px;
+ }
+.f-sb-opc-disabled.sel {
+  background-color: #d8d8d8;
+  border-radius: 5px;
 }
 .f-sb-sep {
   border-bottom: 1.5px solid #ccc;
-  margin: 6px 0;
+  margin: 2px 0;
 }

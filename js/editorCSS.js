@@ -39,7 +39,6 @@ function subsideOpen(btn) {
 	  } else {
 		target = document.querySelector(classe.startsWith('.') ? classe : '.' + classe);
 	  }
-	  console.log(classe, target);	
 	  if (target) target.style.display = 'block';
 
       if (estilos) {
@@ -95,19 +94,23 @@ function tabShow(target) {
 
 //Funcions de Inputs i CSS
 // Veure atribut total o parcial d'un objecte 
-function getCSS(classe, prop, ix) {
+function getCSS(classes, prop, ix) {
   let valcss, modo, ini, fin;
-
+  classes= classes.split(',').map(c => c.trim());
+  let classe=classes[0];
+  
   let el =  document.querySelector("." + classe);
   let obj = getComputedStyle(el);
+
   if (prop in el.style) {
 	  valcss= obj.getPropertyValue(prop).trim();
   } else {
       valcss=el[prop];
   }
   if (ix && parseInt(ix) >= 0) {
+ 
     valcss = valcss.match(/[a-zA-Z-]+\([^)]+\)|[^\s]+/g)[parseInt(ix)-1];
-    if (ix.includes("[")) {
+   if (ix.includes("[")) {
       [, modo, ini, fin] = ix.match(/^\d+(?:-)?(?:([a-z]+))?(?:\[(\d{1,2})(?::(\d{1,2}))?\])?$/i);
 		valcss = valcss.match(/[^(),\s]+/g);
         valcss = (modo ? modo + "(" : "") +
@@ -119,38 +122,45 @@ function getCSS(classe, prop, ix) {
 }
 
 //Inserir un atribut total o parcialment
-function setCSS(classe, prop, ix, valor) {
-  let obj, tcss, surfb, modo, ini, fin, sub;
-  obj = document.querySelector("." + classe);
+function setCSS(classes, prop, ix, valor) {
 
-  if(ix) {
-	tcss = getComputedStyle(obj).getPropertyValue(prop)
-			 .trim().match(/[a-zA-Z-]+\([^)]+\)|[^\s]+/g);	
-	let i = parseInt(ix) - 1;
-	if (ix.includes("[")) {
-	  [, modo, ini, fin] = ix.match(/^\d+(?:-)?(?:([a-z]+))?(?:\[(\d{1,2})(?::(\d{1,2}))?\])?$/i);
-	  ini = parseInt(ini);
-	  fin = fin ? parseInt(fin) : ini;
+  classes = classes.split(',').map(c => c.trim());
+  classes.forEach(classe => {
+    let elems = document.querySelectorAll("." + classe);
+   elems.forEach(el => {
+      let valorActual = valor;
 
-	  sub = tcss[i].match(/([a-zA-Z]+)|(\d*\.?\d+)/g); // ex: ["rgba", "81", "82", "83", "0.5"]
+      if (ix) {
+        let tcss = getComputedStyle(el).getPropertyValue(prop)
+          .trim().match(/[a-zA-Z-]+\([^)]+\)|[^\s]+/g);
 
-	  sub.splice(ini, fin - ini + 1, ...valor.match(/(\d*\.?\d+)/g)); // ini ja apunta al valor dins dels parèntesis
+        let i = parseInt(ix) - 1;
 
-	  tcss[i] = sub[0] + "(" + sub.slice(1).join(", ") + ")";
-	}else{
-	   tcss[i]=valor;
-	}
+        if (ix.includes("[")) {
+          let [, modo, ini, fin] = ix.match(/^\d+(?:-)?(?:([a-z]+))?(?:\[(\d{1,2})(?::(\d{1,2}))?\])?$/i);
+          ini = parseInt(ini);
+          fin = fin ? parseInt(fin) : ini;
 
-	valor=tcss.join(" ");
-  }
-  if (prop in obj.style) {
-	obj.style.setProperty(prop, valor);
-  } else {
-    obj[prop] = valor;
-  } 
-  
-	return;
+          let sub = tcss[i].match(/([a-zA-Z]+)|(\d*\.?\d+)/g);
+          sub.splice(ini, fin - ini + 1, ...valor.match(/(\d*\.?\d+)/g));
+          tcss[i] = sub[0] + "(" + sub.slice(1).join(", ") + ")";
+        } else {
+          tcss[i] = valor;
+        }
+
+        valorActual = tcss.join(" ");
+      }
+
+      if (prop in el.style) {
+        el.style.setProperty(prop, valorActual);
+      } else {
+        el[prop] = valorActual;
+      }
+    });
+  });
 }
+
+
 
 // Extreu el valor d'un input
 function getInput(input) {
