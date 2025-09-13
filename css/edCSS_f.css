@@ -3,14 +3,19 @@
 /* ╚════════════════════════════════════╝ */
 
 .f-form {
-  width: 1200px;                /* Ancho */
-  height: 800px;               /* Alto */
-  background-color: #FFFFFF;   /* BackColor */
-  box-shadow: rgba(81, 82, 83, 0.5) 0px 0px 10px 2px;  /* Sombra (X,Y,Blur,Spread,Color,Opacitat) */
-  padding: 0px;               /* Insert (interior padding) */
+  /* transform: scale(0.8); */
+  display: flex;
+  flex-direction: column;
   position: relative;
-  border-radius: 6px;
+  padding: 0px;
+  margin: auto;
   overflow: hidden;
+  width: 1200px;  /*C1*/
+  height: 800px;  /*C1*/
+  background-color: #FFFFFF;   /*C1*/
+  border: 0px solid #202020;  /*C2*/
+  border-radius: 6px; /*C2*/
+  box-shadow: rgba(81, 82, 83, 0.5) 0px 0px 10px 2px; /*C3*/
 }
 
 /* ╔════════════════════════════════════╗ */
@@ -18,24 +23,27 @@
 /* ╚════════════════════════════════════╝ */
 
 .f-head {
-  height: 30px;                /* Altura */
-  background-color: #FFFFFF;   /* Backcolor */
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  flex: 0 0 auto;
   align-items: center;
   padding: 0 20px;
+  height: 30px;                /* Altura */
+  background-color: #FFFFFF;   /* Backcolor */
 }
 
 .f-head-text-left,
 .f-head-text-center,
 .f-head-text-right {
   font-family: sans-serif;     /* Font */
-  font-size: 16px;             /* Size */
+  font-size: 14px;             /* Size */
   font-weight: normal;         /* Bold */
   font-style: normal;          /* Italica */
   text-decoration: none;       /* Subratllat */
   color: #000000;              /* Color */
-  padding: 0 5px
+  padding: 0px 5px 0px 5px;	   /* Marge */
+  letter-spacing: 0;           /* Separació chars */  
 }
 .f-head-text-left {text-align: left;}
 .f-head-text-center {text-align: center;}
@@ -44,89 +52,459 @@
 /* ╔════════════════════════════════════╗ */
 /* ║               MENU                 ║ */
 /* ╚════════════════════════════════════╝ */
+/* Menú Principal.*/
 .f-menu {
-  border: 0px solid #aaaaaa;
+  display: flex;
+  flex: 0 0 auto; 
+  align-items: center;
   height: 30px;                /* Altura */
+  padding: 0 10px;             /* Insert (separació lateral) */
+  border: 0px solid #aaaaaa;
   background-color: #dddddd;   /* BackColor */
-  box-shadow: rgba(20, 20, 20, 0.6) 0px 0px 4px 0px;
+  box-shadow: rgba(20, 20, 20, 0.6) 0px 0px 4px 0px;  
   font-family: sans-serif;     /* Font */
   font-size: 14px;             /* Size */
-  display: flex;
-  align-items: center;
-  padding: 0 10px;             /* Insert (separació lateral) */
-  gap: 10px;
+  gap: 10px;   /* Separació entre opcions*/
 }
 
-/* Opció de menú individual */
-.f-menu-opcio-act,
-.f-menu-opcio-des,
-.f-mrnu-opcio-sel {
+/*  Opcions Menú Principal */
+.f-menu-opc {
   cursor: pointer;
   transition: 0.2s ease;
-}
-.f-menu-opcio-act {
   padding: 5px 7px;
+  font-family: sans-serif;     /* Font */
+  font-size: 14px;             /* Size */
   color: #000000;              /* FontColor */
   border: 0px solid #aaaaaa;   /* BordeColor */
   border-radius: 5px;          /* Ratio */
-  background-color: #ffffff00;   /* BackColor */
-  font-weight: normal;
+  background-color: #ffffff00; /* BackColor */
+  font-weight: normal;         /* Negrilla */
   font-style: normal;          /* Italica */
   text-decoration: none;       /* Subratllat */
 }
-	
-.f-menu-opcio-des {
-  padding: 5px 7px;
-  color: #808080;              /* FontColor */
-  border: 0px solid #aaaaaa;   /* BordeColor */
-  border-radius: 5px;          /* Ratio */
-  background-color: #ffffff00;   /* BackColor */
-  font-weight: normal;
-  font-style: normal;          /* Italica */
-  text-decoration: none;       /* Subratllat */
+.f-menu-opc:disabled {
+   opacity: 0.5; /* 50% transparència */
+   cursor: not-allowed;   /* canvia l’icona del cursor */
+   pointer-events: none;  /* no rep hover/click */
 }
-.f-menu-opcio-sel {
-  padding: 5px 7px;
-  color: #000000;              /* FontColor */
-  border: 1px solid #aaaaaa;   /* BordeColor */
-  border-radius: 5px;          /* Ratio */
-  background-color: #ffffff00;   /* BackColor */
+
+.f-menu-opc:hover {
+    transform: scale(1.02);
+}
+.f-menu-opc:active {
+    transform: scale(0.98);
+}
+.f-menu-opc.select {
+  border: 1px solid #808080;
+  color: #000000;
+  font-size: 12px;
   font-weight: bold;
-  font-style: normal;          /* Italica */
-  text-decoration: none;       /* Subratllat */
-}  
- .f-marc{
+  font-style: normal;
+  text-decoration: none;
+  background-color: #FFFFFF00;
+}
+
+/* Menú Flotant */
+.f-fmenu-opc {
+  border: 0px solid #FFFFFF;
+  margin: 3px 5px;
+  padding: 0 5px;
+  font-family: Arial;
+  font-size:12px;
+  color: #000000;
+  
+}
+
+.f-fmenu-opc:disabled {
+   opacity: 0.5; /* 50% transparència */
+   cursor: not-allowed;   /* canvia l’icona del cursor */
+   pointer-events: none;  /* no rep hover/click */
+}
+.f-fmenu-opc:hover {
+    transform: scale(1.02);
+}
+.f-fmenu-opc:active {
+    transform: scale(0.98);
+}
+.f-fmenu-opc.select {
+  color: #ffffff;
+  background-color: #0055FFFF;
+}
+.f-fmenu-sep {
+  border-bottom: 1px solid #ccc;
+  margin: 0px 0;
+}
+
+/* ╔════════════════════════════════════╗ */
+/* ║             MARC FLOTANT           ║ */
+/* ╚════════════════════════════════════╝ */
+.f-marc{
     position: absolute;
     padding: 1px 12px;
     z-index: 10;
-	background-color: #f0f0ff80;   /* BackColor */
+	background-color: #f0f0ffff;   /* BackColor */
 	border: 1px solid #000000;
 	border-radius: 5px;
 	box-shadow: #00000080 3px 3px 8px 3px;
     display: none;
- }
-.f-sb-opc-enabled,
-.f-sb-opc-disabled,
-.sel {
-  margin: 3px 5px;
-  padding: 0 5px;
+	z-index:1000;
+    overflow-y: scroll;
 }
-.f-sb-opc-enabled {
-  color: #000;
+/* ╔════════════════════════════════════╗ */
+/* ║         OPCIONS DE COMBO           ║ */
+/* ╚════════════════════════════════════╝ */
+.f-fcombo-opc {
+  display:block;
+  width:100%; 
+  text-align:left;
+  padding:2px 0px;
+  border: 0px;
+  font-family: Arial;
+  font-size:12px;
+  color: #000000;
+  background-color:transparent;
+  cursor:pointer;
 }
-.f-sb-opc-disabled {
-  color: #606060;
+.f-fcombo-opc:disabled {
+   opacity: 0.5; /* 50% transparència */
+   cursor: not-allowed;   /* canvia l’icona del cursor */
+   pointer-events: none;  /* no rep hover/click */
 }
-/* Si vols diferenciar el "select" afegeixes una altra classe o selector */
-.f-sb-opc-enabled.sel {
-  background-color: #b8c3ff;
+.f-fcombo-opc:hover {
+    transform: scale(1.02);
+}
+.f-fcombo-opc:active {
+    transform: scale(0.98);
+}
+.f-fcombo-opc.select {
+  color: #ffffff;
+  background-color: #0055FFFF;
+}
+/* ╔════════════════════════════════════╗ */
+/* ║         AREA DE TREBALL            ║ */
+/* ╚════════════════════════════════════╝ */
+.f-wframe{
+  flex: 1 1 auto;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+/* ╔════════════════════════════════════╗ */
+/* ║         AREA DE PESTANYES          ║ */
+/* ╚════════════════════════════════════╝ */
+.f-tab-container {
+  position: absolute;
+  top: 120px;   /* distància des de la part superior */
+  left: 15px;   /* distància des de l'esquerra */
+  width: 100%;       /* afegeix això */
+  height: 75%;
+  z-index: 999; /* perquè quede per damunt d'altres elements */
+}
+
+.f-tab-buttons {
+  display: flex;
+  width: fit-content;
+  gap: 1px;     /*C2, separació dels tabs*/
+  border-radius: 5px 5px 0 0;
+  background-color: #808080;
+  box-shadow: #00000080 0px 0px 10px 0px;  
+}
+
+.f-tab-btn {
+  width: 120px;    /*C2 */
+  padding: 8px 0;
+  border: 1px solid #cccccc;   /* C1 */
+  background-color: #f0f0f0;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  font-family: Arial, sans-serif;
+  font-size: 14px;  
+   font-weight: normal;         /* Negrilla */
+  font-style: normal;          /* Italica */
+  text-decoration: none;       /* Subratllat */
+ z-index: 1;
+}
+
+.f-tab-btn:hover {
+  background-color: #e0e0e0;
+  font-weight: bold;         /* Negrilla */
+  font-style: normal;          /* Italica */
+  text-decoration: none;       /* Subratllat */
+  color: #000000;
+}
+.f-tab-btn.active {
+  background-color: #ffffff;
+  font-weight: bold;         /* Negrilla */
+  font-style: normal;          /* Italica */
+  text-decoration: none;       /* Subratllat */
+  color: #000000;
+  border-bottom: 0px solid white; /* Fa que desaparega visualment la línia */
+  z-index: 2;
+}
+
+.f-tab-panels {
+  width: calc(100% - 35px);
+  height: 100%;
+  padding: 15px 15px;
+  border: 1px solid #cccccc; /* C1 */
+  background-color: #ffffff;
+  border-radius: 0 5px 5px 5px;
+  position: relative;
+  z-index: 1;
+  margin-top: -2px;
+  overflow: auto;
+  box-shadow: #00000080 0px 0px 10px 0px;
+}
+
+.f-tab-content {
+  display: none;
+
+}
+
+.f-tab-content.active {
+  display: block;
+}
+
+/* ╔════════════════════════════════════╗ */
+/* ║          OBJECTES                  ║ */
+/* ╚════════════════════════════════════╝ */
+
+/*     Objecte: CAMP DE EDICIÓ            */
+/*   ══════════════════════════════════   */
+.f-field {
+  position: absolute;
+  display:flex;
+  align-items: center;
+  width: fit-content; /*fit-content;   /* ocupa només l’ample real */
+  height: fit-content;  /* ocupa només l’altura real */
+  border: 0px solid #000000FF;
+}
+
+
+/* ╔════════════════════════════════════╗ */
+/* ║          ELEMENT                   ║ */
+/* ╚════════════════════════════════════╝ */
+
+/*     Element: LABEL / ETIQUETA          */
+/*   ══════════════════════════════════   */
+
+.f-label {
+  position: absolute;
+  top: 3px;
+  left: 0px;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold; 
+  font-style: normal;
+  text-decoration: none;
+  font-stretch: normal;
+  letter-spacing: -0.05px;
+  color: #000000;
+  z-index: 1;   
+}
+
+
+/*     Element: INPUT                     */
+/*   ══════════════════════════════════   */
+    /* Base .f-input */
+ 
+.f-input {
+  box-sizing: border-box; /*No*/
+  height: 20px;
+  padding: 4px 6px;
+  margin-left: 90px;
+  border: 0;
   border-radius: 5px;
- }
-.f-sb-opc-disabled.sel {
-  background-color: #d8d8d8;
-  border-radius: 5px;
+  box-shadow: #000000 1px 1px 1px 2px; / color x y blur spread */
+  color: #000000;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: normal; 
+  font-style: normal;
+  text-decoration: none;
+  background-color: #ffffff;
+  transition: box-shadow .15s ease, outline-color .15s ease, background-color .15s ease;  /*No*/
+  width: 260px;  /*No*/
 }
-.f-sb-sep {
-  border-bottom: 1.5px solid #ccc;
-  margin: 2px 0;
+
+  /* Hover */
+.f-input:hover {
+  box-shadow: #00109a 1px 1px 1px 2px;
+  font-weight: normal; 
+  font-style: normal;
+  text-decoration: none;
+}
+
+  /* Focus (ratolí o teclat) */
+.f-input:focus {
+  outline: 1px solid #2d6cdf;
+  outline-offset: 4px;
+}
+
+  /* Disabled */
+.f-input:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+  /* Read-only */
+.f-input:read-only {
+  box-shadow: #00000080 1px 1px 1px 1px inset;
+  background-color: #f0f0f0;
+  cursor: default;
+  font-style: italic;
+}
+   /* Validació pròpia (classe manual) */
+.f-input.novalid {
+  outline: 1px dashed #d00000;
+  outline-offset: 4px;
+}
+
+
+/*     Element: Mini-botons icona         */
+/*   ══════════════════════════════════   */
+.f-bottom-min-line {
+  /*margin-top: 15px;*/
+  /* position: absolute; */
+  margin-left: 0px;
+  display: flex;
+  gap: 1px; /* separació entre botons */
+  align-items: center;
+}
+.f-bottom-min {
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;       /* o 50% per cercle */
+  border: 1px solid #000000;
+  background: #00000000 linear-gradient(135deg, #f0f0f0, #c0c0c0);
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  margin: 0px 2px;
+  font-size: 12px;   /* mida de la font */
+  padding: 0;
+  z-index: 2;
+  transition: all 0.15s ease;
+  flex: 0 0 auto;
+}
+
+.f-bottom-min i {
+  font-size: 12px;   /* mida de la icona */
+  pointer-events: none; /* que no interfereixi amb el click */
+}
+.f-bottom-min:hover{
+  border: 2px solid #4f4f4f;
+}
+.f-bottom-min.select,
+.f-bottom-min:active {
+  transform: translateY(1px); /* quan el polses baixa un poc */
+  box-shadow: -1px -1px 0px rgba(0,0,0,0.7);
+}
+.f-bottom-min:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.f-bottom-min.short { aspect-ratio: 1/1; }   /* quadrat: ample = alt */
+.f-bottom-min.long  { aspect-ratio: 5/2; padding: 0 2px; } /* allargat: ample = 3 × alt */
+
+
+/* ╔════════════════════════════════════╗ */
+/* ║         AREA DE BOTONERA           ║ */
+/* ╚════════════════════════════════════╝ */
+.f-botonera {
+  flex: 0 0 auto; 
+  display:flex;
+  align-items: center;    /* vertical */
+  justify-content: space-between; /* separa left i right */
+  margin-bottom: 10px;
+  margin-left: 15px;
+  height: 80px;
+  width: calc(100% - 30px);
+  border: 0px solid #000000;
+}
+.left, .right {
+  display: flex;
+  gap: 10px; /* espai entre botons */
+}
+/*     Element: Botons grans              */
+/*   ══════════════════════════════════   */
+.f-boto {
+  background: linear-gradient(135deg, #FFFFFF, #a0a0a0); /* degradat suau */
+  color: #000000;
+  border: 1px solid black;
+  border-radius: 30px;
+  height: 60px;
+  width: 120px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center; /* horitzontal */
+  align-items: center;    /* vertical */
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 3px rgba(0,0,0,0.6);
+  transition: all 0.15s ease;
+}
+
+.f-boto:hover {
+  background: linear-gradient(135deg, #909090, #F0F0F0);
+  border: 2px solid black;
+  transform: translateY(-2px); /* efecte lleuger de flotació */
+  box-shadow: 0 6px 10px rgba(0,0,0,0.6);
+
+}
+
+.f-boto:active {
+  transform: translateY(0); /* quan el polses baixa un poc */
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+/*     Element: Area de missatges         */
+/*   ══════════════════════════════════   */
+
+.f-missatges {
+  display: flex;
+  position: relative;
+  flex: 1;                /* ocupa tot l’espai lliure */
+  height: 100%;           /* mateixa alçada que la botonera */
+  margin: 0px 10px;
+}
+
+.alerta {
+  position: relative;
+  padding: -1px 0px 0px 5px;
+  width: 100%;
+  margin: 0 -199px 0 5px;
+  height: 30px;
+  overflow: hidden;
+  border: 0px solid #000;
+  display: flex;
+  align-items: center;
+  z-index: -990;
+  /* Parpelleig fons */
+  /* animation: parpelleig 1s infinite; */
+}
+
+.alerta span {
+  white-space: nowrap;
+  width: 150%;
+  border: 1px solid #000;
+  /* animation: moureText 5s linear infinite; */
+}
+
+/* Parpelleig: blanc i roig */
+@keyframes parpelleig {
+  0%, 50% { background-color: white; }
+  100% { background-color: red; }
+}
+
+/* Mou text cap a l'esquerra */
+@keyframes moureText {
+  0%   { transform: translateX(200%); }
+  100% { transform: translateX(-100%); }
 }
